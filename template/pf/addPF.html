@@ -1,0 +1,41 @@
+<h1> Adicionar Contagem </h1>
+<form name="ContagemForm" ng-submit="addContagem()">
+    <input name="requisito" type="text" placeholder="Requisito" required/>
+    <input name="descricao" type="text" placeholder="Descrição" required/>
+    <select name="pontoPF" required>
+        <option selected>Selecione o tipo de PF</option>
+        <option ng-repeat="tipo in tiposDePF" value="{{$index}}">
+            {{tipo.descricao}} ({{tipo.ponto}} pontos)
+        </option>
+    </select>
+    <button>Salvar</button>
+</form>
+
+<div>
+    <table>
+        <thead>
+            <tr>
+                <th>Listagem das Contagens</th>
+                <th>Total de pontos: {{contagens.totalDePontos}}</th>
+            </tr>            
+        </thead>
+        <tbody>
+            <tr>
+                <td>Requisito</td>
+                <td>Descrição</td>
+                <td>Tipo PF</td>
+                <td>Qtd Pontos</td>
+                <td>Ação</td>
+            </tr>
+            <tr ng-repeat="contagem in contagens.data">
+                <td>{{contagem.requisito}}</td>                
+                <td>{{contagem.descricao}}</td>                
+                <td>{{contagem.tipoPF.descricao}}</td>                
+                <td>{{contagem.tipoPF.ponto}}</td>                
+                <td>
+                    <a ng-click="removeContagem($index)">Remover</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>    
+</div>
